@@ -73,7 +73,7 @@ class CrudSorvete
         $dados[] = $sor->getCnpj();
         $dados[] = $sor->getdataEnt();
         $dados[] = $sor->getCpf();
-        $sql = "UPDATE sorvete SET nomeSor = '$dados[0]', sabor = '$dados[1]', quantidade = '$dados[2]',validade = '$dados[3]',cnpj_dor = '$dados[4]',dt_ent_es = '$dados[5]' WHERE id = $id";
+        $sql = "UPDATE sorvete SET nomeSor = '$dados[0]', sabor = '$dados[1]', quantidade = '$dados[2]',validade = '$dados[3]',for_cnpj = '$dados[4]',dt_ent_es = '$dados[5]' WHERE id = $id";
         $this->conexao->exec($sql);
     }
     public function excluirSorvete($id){

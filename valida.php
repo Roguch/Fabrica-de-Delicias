@@ -25,13 +25,15 @@
                     echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos');window.location.href='view/senha.html'; </script>";
                     die();
                 }elseif($resutado->getTipo_user() == 'gerente'){
+
+                    $gerenteAtivo = $resutado->getCpf();
                     $funcionarios = $crud->getUsuarios();
                     $sorvetes     = $crud2->getSorvetes();
                     $fornecedores = $crud3->getFornecedores();
 
                     include "view/gerenteSorvete.php";
                 }elseif ($resutado->getTipo_user() == 'funcionario' ){
-
+                    $usuarioAtivo =  $resutado->getCpf();
                     $sorvetes     = $crud2->getSorvetes();
                     $crudSor = new CrudSorvete();
                     include "view/funcionarioSorvete.php";
@@ -40,6 +42,7 @@
                 break;
             case 'sair':
                 header("location:view/senha.html");
+                break;
             case 'cad':
                 include "view/cadastro.php";
                 break;
@@ -84,6 +87,7 @@
                     $crudSor = new CrudSorvete();
                     include "view/funcionarioSorvete.php";
                 }
+                break;
             case 'deleta':
                 if (isset($_POST['cpf'])){
                     $crud->excluirUsuario($_POST['cpf']);
@@ -98,7 +102,7 @@
                 $fornecedores = $crud3->getFornecedores();
 
                 include "view/gerenteSorvete.php";
-
+                break;
             case 'editar':
                 if (isset($_POST['cpf'])){
                     $valores = $crud->getUsuario($_POST['cpf']);
@@ -112,7 +116,56 @@
                     $valores = $crud3->getFornecedor($_POST['cnpj']);
 
                     include "view/editarFor.php";
+                }elseif (isset($_POST['cpfFun'])){
+                    $valores = $crud->getUsuario($_POST['cpfFun']);
+
+                    include "view/editaFunFun.php";
+                }
+                break;
+            case 'editado':
+
+                if ($_POST['idEdi'] == 1){
+                    if ($_POST['tipo_user'] == 0){
+                        $userTip = 0;
+                    }else{
+                        $userTip = 1;
+                    }
+                    $upFun = new Usuario($_POST['cpf'],$userTip,$_POST['email'],$_POST['nome'],$_POST['login'],$_POST['senha'],$_POST['telefone']);
+                    $crud->atualizaUsuario($upFun,$_POST['cpf']);
+                    $funcionarios = $crud->getUsuarios();
+                    $sorvetes     = $crud2->getSorvetes();
+                    $fornecedores = $crud3->getFornecedores();
+
+                    include "view/gerenteSorvete.php";
+                }elseif ($_POST['idEdi'] == 2){
+
+                    $upFor = new Fornecedor($_POST['cnpj'],$_POST['nome'],$_POST['email'],$_POST['telefone']);
+                    $crud3->atualizaFornecedor($upFor,$_POST['cnpj']);
+                    $funcionarios = $crud->getUsuarios();
+                    $sorvetes     = $crud2->getSorvetes();
+                    $fornecedores = $crud3->getFornecedores();
+
+                    include "view/gerenteSorvete.php";
+                }elseif ($_POST['idEdi'] == 3 ){
+                    $upSor = new Sorvete($_POST['id'],$_POST['nome'],$_POST['sabor'],$_POST['quantidade'],$_POST['validade'],$_POST['data_ent'],$_POST['cnpj'],$_POST['cpf']);
+                    $crud2->atualizaSorvete($upSor,$_POST['id']);
+
+                    $funcionarios = $crud->getUsuarios();
+                    $sorvetes     = $crud2->getSorvetes();
+                    $fornecedores = $crud3->getFornecedores();
+
+                    include "view/gerenteSorvete.php";
+                }else{
+
+                    $upFun = new Usuario($_POST['cpf'],1,$_POST['email'],$_POST['nome'],$_POST['login'],$_POST['senha'],$_POST['telefone']);
+                    $crud->atualizaUsuario($upFun,$_POST['cpf']);
+                    $funcionarios = $crud->getUsuarios();
+                    $sorvetes     = $crud2->getSorvetes();
+                    $fornecedores = $crud3->getFornecedores();
+
+                    include "view/funcionarioSorvete.php";
                 }
 
+                break;
         }
 ?>

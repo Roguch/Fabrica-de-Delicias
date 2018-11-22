@@ -62,6 +62,10 @@
                 </div>
             </li>
             <input type="button" onclick="window.location='valida.php';" value="sair" id="sair" style="background: #d09d70;">
+            <form action="valida.php?acao=editar" method="post">
+                <input type="hidden" name="cpfFun" value="<?php echo $usuarioAtivo?>">
+                <input type="submit" value="Editar" name="editar" style="background: #d09d70;">
+            </form>
         </ul>
     </div>
 

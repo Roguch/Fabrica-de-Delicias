@@ -90,8 +90,13 @@ class CrudUsuario
     public function atualizaUsuario(Usuario $user, $cpf)
     {
         $this->conexao = DBConnection::getConexao();
+        if ($user->getTipo_user() == 'gerente'){
+            $tipo = 0;
+        }else{
+            $tipo = 1;
+    }
         $dados[] = $user->getCpf();
-        $dados[] = $user->getTipo_user();
+        $dados[] = $tipo;
         $dados[] = $user->getEmail();
         $dados[] = $user->getNome();
         $dados[] = $user->getLogin();
