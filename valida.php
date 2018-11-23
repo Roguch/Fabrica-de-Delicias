@@ -26,7 +26,6 @@
                     die();
                 }elseif($resutado->getTipo_user() == 'gerente'){
 
-                    $gerenteAtivo = $resutado->getCpf();
                     $funcionarios = $crud->getUsuarios();
                     $sorvetes     = $crud2->getSorvetes();
                     $fornecedores = $crud3->getFornecedores();
@@ -44,13 +43,22 @@
                 header("location:view/senha.html");
                 break;
             case 'cad':
+
                 include "view/cadastro.php";
+                break;
+
+            case 'home':
+
+                $funcionarios = $crud->getUsuarios();
+                $sorvetes     = $crud2->getSorvetes();
+                $fornecedores = $crud3->getFornecedores();
+
+                include "view/gerenteSorvete.php";
                 break;
             case 'cadastroFun':
 
                     $funcionario = new Usuario($_POST['cpf'],null,$_POST['email'],$_POST['name'],$_POST['login'],$_POST['senha'],$_POST['telefone']);
                     $crud->insertUsuario($funcionario);
-                    echo"<script language='javascript' type='text/javascript'>alert('Cadastro Realizado');window.location.href='view/cadastro.php'; </script>";
                     include "view/cadastro.php";
                     break;
 
@@ -61,7 +69,6 @@
 
                     $sorvete = new Sorvete(null,$_POST['nome'],$_POST['sabor'],$_POST['qtd'],$_POST['validade'],$_POST['data_ent'],$cnpj,$cpf);
                     $crud2->insertSorvete($sorvete);
-                    echo"<script language='javascript' type='text/javascript'>alert('Cadastro Realizado');window.location.href='view/cadastro.php'; </script>";
                     include "view/cadastro.php";
                     break;
 
@@ -69,7 +76,6 @@
 
                 $fornecedore =new Fornecedor($_POST['cnpj'],$_POST['nome'],$_POST['email'],$_POST['telefone']);
                 $crud3->insertFornecedor($fornecedore);
-                echo"<script language='javascript' type='text/javascript'>alert('Cadastro Realizado');window.location.href='view/cadastro.php'; </script>";
                 include "view/cadastro.php";
                 break;
 

@@ -47,7 +47,6 @@
     </script>
 </head>
 <body>
-
 <div class="AbasControli">
     <div id="abas">
         <ul class="abas">
@@ -67,6 +66,8 @@
                 </div>
             </li>
         </ul>
+
+        <input type="button" onclick="window.location='valida.php?acao=home';" value="Home" id="home" style="background: #d09d70;">
     </div>
 
     <div id="conteudos" style="width: 1885px; height: 905px; padding-left: 10px">
