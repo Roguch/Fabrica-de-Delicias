@@ -22,7 +22,7 @@
             case 'logar':
                 $resutado = $crud->validaUsuario($_POST['login'],$_POST['senha']);
                 if ($resutado == null){
-                    echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos');window.location.href='view/senha.html'; </script>";
+                    echo "<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos');window.location.href='index.html' </script>";
                     die();
                 }elseif($resutado->getTipo_user() == 'gerente'){
 
@@ -40,7 +40,7 @@
                 }
                 break;
             case 'sair':
-                header("location:view/senha.html");
+                header("location:index.html");
                 break;
             case 'cad':
 
