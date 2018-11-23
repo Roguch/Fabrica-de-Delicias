@@ -75,6 +75,11 @@
             <form action="valida.php?acao=cadastroFun" method="post">
                 <input type="number" name="cpf" placeholder="CPF">
                 <br>
+                <select name="tipo_user">
+                    <option value="1">Funcionario</option>
+                    <option value="0">Gerente</option>
+                </select>
+                <br>
                 <input type="email" name="email" placeholder="Elmail">
                 <br>
                 <input type="text" name="name" placeholder="Nome">

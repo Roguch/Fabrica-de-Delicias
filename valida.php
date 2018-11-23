@@ -57,7 +57,7 @@
                 break;
             case 'cadastroFun':
 
-                    $funcionario = new Usuario($_POST['cpf'],null,$_POST['email'],$_POST['name'],$_POST['login'],$_POST['senha'],$_POST['telefone']);
+                    $funcionario = new Usuario($_POST['cpf'],$_POST['tipo_user'],$_POST['email'],$_POST['name'],$_POST['login'],$_POST['senha'],$_POST['telefone']);
                     $crud->insertUsuario($funcionario);
                     include "view/cadastro.php";
                     break;

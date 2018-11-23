@@ -78,12 +78,13 @@ class CrudUsuario
     {
         $this->conexao = DBConnection::getConexao();
         $cpf     = $user->getCpf();
+        $tipo_user = $user->getTipo_user();
         $email   = $user->getEmail();
         $nome    = $user->getNome();
         $login   = $user->getLogin();
         $senha   = $user->getSenha();
         $telefone = $user->getTelefone();
-        $this->conexao->exec("insert into usuario(cpf,tip_user_id,email,nome,login,senha,telefone) VALUES('$cpf',1,'$email','$nome','$login','$senha','$telefone')");
+        $this->conexao->exec("insert into usuario(cpf,tip_user_id,email,nome,login,senha,telefone) VALUES('$cpf','$tipo_user','$email','$nome','$login','$senha','$telefone')");
 
     }
 
