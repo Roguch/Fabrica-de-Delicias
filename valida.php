@@ -22,7 +22,7 @@
             case 'logar':
                 $resutado = $crud->validaUsuario($_POST['login'],$_POST['senha']);
                 if ($resutado == null){
-                    echo "<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos');window.location.href='index.html' </script>";
+                    echo "<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos');window.location.href='index.html'; </script>";
                     die();
                 }elseif($resutado->getTipo_user() == 'gerente'){
 
@@ -56,10 +56,15 @@
                 include "view/gerenteSorvete.php";
                 break;
             case 'cadastroFun':
+                    if (strlen($_POST['senha']) < 8 ){
 
-                    $funcionario = new Usuario($_POST['cpf'],$_POST['tipo_user'],$_POST['email'],$_POST['name'],$_POST['login'],$_POST['senha'],$_POST['telefone']);
-                    $crud->insertUsuario($funcionario);
-                    include "view/cadastro.php";
+                        echo "<script>alert('Senha incegura');</script>";
+                        include "view/cadastro.php";
+                    }else {
+                        $funcionario = new Usuario($_POST['cpf'], $_POST['tipo_user'], $_POST['email'], $_POST['name'], $_POST['login'], $_POST['senha'], $_POST['telefone']);
+                        $crud->insertUsuario($funcionario);
+                        include "view/cadastro.php";
+                    }
                     break;
 
             case 'cadastroSor':
@@ -124,25 +129,31 @@
                     include "view/editarFor.php";
                 }elseif (isset($_POST['cpfFun'])){
                     $valores = $crud->getUsuario($_POST['cpfFun']);
-
                     include "view/editaFunFun.php";
                 }
                 break;
             case 'editado':
 
                 if ($_POST['idEdi'] == 1){
-                    if ($_POST['tipo_user'] == 0){
-                        $userTip = 0;
-                    }else{
-                        $userTip = 1;
-                    }
-                    $upFun = new Usuario($_POST['cpf'],$userTip,$_POST['email'],$_POST['nome'],$_POST['login'],$_POST['senha'],$_POST['telefone']);
-                    $crud->atualizaUsuario($upFun,$_POST['cpf']);
-                    $funcionarios = $crud->getUsuarios();
-                    $sorvetes     = $crud2->getSorvetes();
-                    $fornecedores = $crud3->getFornecedores();
+                    if (strlen($_POST['senha']) < 8 ){
 
-                    include "view/gerenteSorvete.php";
+                        echo "<script>alert('Senha incegura');</script>";
+                        $valores = $crud->getUsuario($_POST['cpf']);
+                        include "view/editarFun.php";
+                    }else {
+                        if ($_POST['tipo_user'] == 0) {
+                            $userTip = 0;
+                        } else {
+                            $userTip = 1;
+                        }
+                        $upFun = new Usuario($_POST['cpf'], $userTip, $_POST['email'], $_POST['nome'], $_POST['login'], $_POST['senha'], $_POST['telefone']);
+                        $crud->atualizaUsuario($upFun, $_POST['cpf']);
+                        $funcionarios = $crud->getUsuarios();
+                        $sorvetes = $crud2->getSorvetes();
+                        $fornecedores = $crud3->getFornecedores();
+
+                        include "view/gerenteSorvete.php";
+                    }
                 }elseif ($_POST['idEdi'] == 2){
 
                     $upFor = new Fornecedor($_POST['cnpj'],$_POST['nome'],$_POST['email'],$_POST['telefone']);
@@ -162,14 +173,19 @@
 
                     include "view/gerenteSorvete.php";
                 }else{
+                    if (strlen($_POST['senha']) < 8 ){
 
-                    $upFun = new Usuario($_POST['cpf'],1,$_POST['email'],$_POST['nome'],$_POST['login'],$_POST['senha'],$_POST['telefone']);
-                    $crud->atualizaUsuario($upFun,$_POST['cpf']);
-                    $funcionarios = $crud->getUsuarios();
-                    $sorvetes     = $crud2->getSorvetes();
-                    $fornecedores = $crud3->getFornecedores();
+                        echo "<script>alert('Senha incegura');</script>";
+                        $valores = $crud->getUsuario($_POST['cpf']);
+                        include "view/editaFunFun.php";
+                    }else {
+                        $usuarioAtivo = $_POST['cpf'];
+                        $upFun = new Usuario($_POST['cpf'], 1, $_POST['email'], $_POST['nome'], $_POST['login'], $_POST['senha'], $_POST['telefone']);
+                        $crud->atualizaUsuario($upFun, $_POST['cpf']);
+                        $sorvetes = $crud2->getSorvetes();
 
-                    include "view/funcionarioSorvete.php";
+                        include "view/funcionarioSorvete.php";
+                    }
                 }
 
                 break;

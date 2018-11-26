@@ -43,5 +43,6 @@ class Usuario
     public function getLogin(){return $this->login;}
     public function getSenha(){return $this->senha;}
     public function getTelefone(){return $this->telefone;}
+    public function getUser_tip(){return $this->tipo_user;}
 
 }

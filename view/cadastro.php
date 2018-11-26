@@ -4,27 +4,7 @@
     <meta charset="UTF-8">
     <title>Cadastro</title>
     <title>Title</title>
-    <style>
-        body{font-family:Calibri, Tahoma, Arial}
-        .AbasControli{ width:100%;  height:400px}
-        .AbasControli #abas{ width:100%; overflow:hidden; cursor:hand}
-        .AbasControli #conteudos{ width:100%; border: solid 1px;overflow:hidden; height:100%; }
-        .AbasControli .abas{display:inline;}
-        .AbasControli .abas li{float:left}
-        .aba{width:110px; height:30px; border:solid 1px; border-radius:5px 5px 0 0;
-            text-align:center; padding-top:5px; background: #8a5454
-        }
-        .ativa{width:110px; height:30px; border:solid 1px; border-radius:5px 5px 0 0;
-            text-align:center; padding-top:5px; background: #5a2929;}
-        .ativa span, .selected span{color:#fff}
-        .AbasControli #conteudos{background: #d09d70
-        }
-        .AbasControli .conteudo{background: #d09d70; display:none;color:#fff; width: 1885px; height: 925px;}
-        .selected{width:110px; height:30px; border:solid 1px; border-radius:5px 5px 0 0;
-            text-align:center; padding-top:5px; background: #5a2929
-        }
-        #sair{background: #d09d70;}
-    </style>
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){

@@ -33,7 +33,7 @@ class CrudUsuario
 
     public function getUsuario($id){
         $this->conexao = DBConnection::getConexao();
-        $sql = "select * from usuario WHERE cpf = $id";
+        $sql = "select * from usuario WHERE cpf = '$id'";
 
         $resultado = $this->conexao->query($sql);
         $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
@@ -78,7 +78,7 @@ class CrudUsuario
     {
         $this->conexao = DBConnection::getConexao();
         $cpf     = $user->getCpf();
-        $tipo_user = $user->getTipo_user();
+        $tipo_user = $user->getUser_tip();
         $email   = $user->getEmail();
         $nome    = $user->getNome();
         $login   = $user->getLogin();

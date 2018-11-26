@@ -3,28 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Gerente Pagina</title>
-    <style>
-        body{font-family:Calibri, Tahoma, Arial}
-        .AbasControli{ width:100%;  height:400px}
-        .AbasControli #abas{ width:100%; overflow:hidden; cursor:hand}
-        .AbasControli #conteudos{ width:100%; border: solid 1px;overflow:hidden; height:100%; }
-        .AbasControli .abas{display:inline;}
-        .AbasControli .abas li{float:left}
-        .aba{width:110px; height:30px; border:solid 1px; border-radius:5px 5px 0 0;
-            text-align:center; padding-top:5px; background: #8a5454
-        }
-        .ativa{width:110px; height:30px; border:solid 1px; border-radius:5px 5px 0 0;
-            text-align:center; padding-top:5px; background: #5a2929;}
-        .ativa span, .selected span{color:#fff}
-        .AbasControli #conteudos{background: #d09d70
-        }
-        .AbasControli .conteudo{background: #d09d70; display:none;color:#fff; width: 1885px; height: 925px;}
-        .selected{width:110px; height:30px; border:solid 1px; border-radius:5px 5px 0 0;
-            text-align:center; padding-top:5px; background: #5a2929
-        }
-        #sair{background: #d09d70;}
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+
     <script type="text/javascript">
         $(document).ready(function(){
              $("#conteudos div:nth-child(1)").show();
@@ -53,19 +38,19 @@
 <body>
 
     <div class="AbasControli">
-        <div id="abas">
-            <ul class="abas">
-                <li>
+        <div id="abas" >
+            <ul class="abas" style=" padding-top: 5px;padding-left: 5px;margin-bottom: 0px;">
+                <li class="btn btn-primary">
                     <div class="aba">
                         <span>Funcionarios</span>
                     </div>
                 </li>
-                <li>
+                <li class="btn btn-primary">
                     <div class="aba">
                         <span>Sorvete</span>
                     </div>
                 </li>
-                <li>
+                <li class="btn btn-primary">
                     <div class="aba">
                         <span>Fornecedor</span>
                     </div>
@@ -79,6 +64,7 @@
         <div class="conteudo" >
 
             <?php foreach ($funcionarios as $funcionario):?>
+
                     <tr>
                         <br>
                         <?php echo "Nome:".$funcionario->getNome()." "?>
@@ -100,6 +86,7 @@
                             <input type="submit" value="Deletar" name="deleta" onclick="return checkDelete()">
                         </form>
                     </tr>
+
             <?php endforeach;?>
         </div>
         <div class="conteudo" style="padding-top: 20px">
@@ -124,8 +111,10 @@
                         <input type="submit" value="Deletar" name="deleta" onclick="return checkDelete()">
                     </form>
                 </tr>
-            <?php endforeach;?>
         </div>
+            <?php endforeach;?>
+
+
         <div class="conteudo" style="padding-top: 20px">
             <?php foreach ($fornecedores as $fornecedor):?>
                 <tr>
@@ -146,6 +135,7 @@
                 </tr>
             <?php endforeach;?>
         </div>
+    </div>
     </div>
 
 
